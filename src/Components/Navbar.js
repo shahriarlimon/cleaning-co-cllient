@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+ 
 const Navbar = ({ children }) => {
   return (
     <div class="drawer drawer-end">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col ">
-        <div class="w-full navbar bg-base-100 px-12">
+        <div class="w-full navbar bg-base-100 fixed top-0 z-50 px-12">
           <div class="flex-1 px-2 mx-2 text-2xl">Clean Co.</div>
           <div class="flex-none lg:hidden">
             <label for="my-drawer-3" class="btn btn-square btn-ghost">
