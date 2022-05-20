@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = ({ children }) => {
   const [dark, setDark] = useState(false);
+  const [admin] = useAdmin();
+  const {pathname} = useLocation()
   return (
     <div data-theme={dark ? "dark" : "light"} class="drawer drawer-end">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col ">
         <div class="w-full navbar bg-base-100 fixed top-0 z-50 px-12">
+        { pathname?.includes('dashboard') && <label for="my-drawer-2" tabindex="0" class="btn lg:hidden btn-ghost btn-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+      </label>}
           <div class="flex-1 px-2 mx-2 text-2xl">Clean Co.</div>
           <div class="flex-none lg:hidden">
             <label for="my-drawer-3" class="btn btn-square btn-ghost">
@@ -34,6 +40,11 @@ const Navbar = ({ children }) => {
                   Home
                 </NavLink>
               </li>
+               { admin && <li>
+                <NavLink className="rounded-lg" to="/dashboard">
+                  Dashboard
+                </NavLink>
+              </li>}
               <li>
                 <NavLink className="rounded-lg" to="/about">
                   About
@@ -107,6 +118,11 @@ const Navbar = ({ children }) => {
               Home
             </NavLink>
           </li>
+          { admin && <li>
+                <NavLink className="rounded-lg" to="/dashboard">
+                  Dashboard
+                </NavLink>
+              </li>}
           <li>
             <NavLink className="rounded-lg" to="/about">
               About
