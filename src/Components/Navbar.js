@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
- 
+
 const Navbar = ({ children }) => {
+  const [dark, setDark] = useState(false);
   return (
-    <div class="drawer drawer-end">
+    <div data-theme={dark ? "dark" : "light"} class="drawer drawer-end">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col ">
         <div class="w-full navbar bg-base-100 fixed top-0 z-50 px-12">
@@ -73,8 +74,8 @@ const Navbar = ({ children }) => {
                 </ul>
               </li>
               <li>
-                <label  class="swap swap-rotate">
-                  <input data-toggle-theme="dark,light" type="checkbox" />
+                <label class="swap swap-rotate">
+                  <input onClick={() => setDark(!dark)} type="checkbox" />
 
                   <svg
                     class="swap-on fill-current w-10 h-10"
@@ -102,11 +103,52 @@ const Navbar = ({ children }) => {
         <label for="my-drawer-3" class="drawer-overlay"></label>
         <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
           <li>
-            <a>Sidebar Item 1</a>
+            <NavLink className="rounded-lg" to="/">
+              Home
+            </NavLink>
           </li>
           <li>
-            <a>Sidebar Item 2</a>
+            <NavLink className="rounded-lg" to="/about">
+              About
+            </NavLink>
           </li>
+          <li>
+            <NavLink className="rounded-lg" to="/services">
+              Services
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="rounded-lg" to="/contact">
+              Contact
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="rounded-lg" to="/login">
+              Login
+            </NavLink>
+            
+          </li>
+          <div
+              tabindex="0"
+              class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box"
+            >
+              <div class="collapse-title text-xl font-medium">
+                Book Now
+              </div>
+              <div class="collapse-content">
+              <li>
+            <NavLink className="rounded-lg" to="/contact">
+             Quick Book
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="rounded-lg" to="/login">
+             Prebook
+            </NavLink>
+            
+          </li>
+              </div>
+            </div>
         </ul>
       </div>
     </div>
